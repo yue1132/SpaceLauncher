@@ -4,7 +4,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**English** | [中文说明](#中文说明)
+**English** | [简体中文](README_CN.md)
 
 <p align="center">
   <img src="Resources/screenshot.png" alt="SpaceLauncher Screenshot" width="600">
@@ -31,7 +31,7 @@ A lightweight macOS app launcher that uses the **Space key as a modifier**. No m
 ```
 ┌─────────────────────────────────────────┐
 │                                         │
-│   [Space] ──hold 150ms──> │
+│   [Space] ──hold 150ms──> 🎯 Activate   │
 │                                         │
 │         ┌─────────────────┐             │
 │         │  🎯 SpaceLauncher │           │
@@ -216,68 +216,3 @@ swift run SpaceLauncher
 ## 📄 License
 
 [MIT License](LICENSE) — feel free to use, modify, and distribute.
-
----
-
-## 中文说明
-
-<p align="center">
-  <img src="Resources/screenshot.png" alt="SpaceLauncher 截图" width="600">
-</p>
-
-> 🚀 **macOS 上最快启动应用的方式** — 按住空格，按一个键，完成。
-
-一款轻量级 macOS 应用启动器，使用 **空格键作为修饰键**。不再需要 `Cmd+空格` 或伸手去拿鼠标 — 只要按住空格，轻按一个键就能瞬间启动任何应用。
-
-### ✨ 核心特色
-
-| 功能 | 说明 |
-|------|------|
-| 🎯 **空格作为修饰键** | 按住空格 150ms 激活，短按仍然输入空格 |
-| ⚡ **瞬间启动** | 无 UI 延迟，无需搜索 — 肌肉记忆即可 |
-| 🔄 **连续切换** | 保持按住空格，可连续按多个键快速切换应用 |
-| 💡 **可视化提示** | 精美的浮窗面板，一目了然显示所有快捷键 |
-| ⚙️ **热重载配置** | 编辑 YAML 配置文件，更改即时生效 |
-| 🔈 **音效反馈** | 微妙的提示音确认启动成功 |
-| 🌙 **仅菜单栏** | 无 Dock 图标，占用极小 |
-
-### 🚀 安装
-
-从 [Releases](https://github.com/yue1132/SpaceLauncher/releases) 下载最新版本，解压后拖到 `/Applications/`。
-
-### 📖 使用方法
-
-1. 启动 SpaceLauncher
-2. **授予辅助功能权限**（首次运行会自动提示）
-3. 按住空格约 150ms，直到出现提示面板
-4. 保持按住空格，按下配置的键启动应用
-5. 松开空格，面板消失
-
-### 💡 使用技巧
-
-| 技巧 | 说明 |
-|------|------|
-| 🔄 **连续切换** | 保持按住空格，连续按多个键可快速在应用间切换 |
-| ⏸️ **暂停功能** | 玩游戏时点击菜单栏图标 →「暂停运行」 |
-| 🔄 **重载配置** | 修改配置后，右键菜单栏图标 →「重新加载配置」 |
-| 🔐 **开机自启** | 从菜单栏启用「开机自启」 |
-
-### ❓ 常见问题
-
-**为什么需要辅助功能权限？**
-
-SpaceLauncher 需要监听全局键盘事件来检测空格键，这需要辅助功能权限。应用只在空格键被按下时监听键盘事件，不会记录或存储任何按键信息。
-
-**空格键不生效怎么办？**
-
-1. 检查是否已授予辅助功能权限（菜单栏图标显示 ⚠️ 表示未授权）
-2. 尝试从菜单栏暂停再恢复
-3. 检查是否有其他应用拦截了空格键
-
-**与 Spotlight/Alfred 有什么不同？**
-
-SpaceLauncher 专为**速度**设计 — 无需输入，无需搜索，按住即按。适合希望用肌肉记忆快速启动常用应用的用户。
-
-### 📄 许可证
-
-[MIT 许可证](LICENSE) — 可自由使用、修改和分发。
