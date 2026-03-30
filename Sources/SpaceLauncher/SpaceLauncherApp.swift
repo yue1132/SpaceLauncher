@@ -27,9 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         setupMenuBar()
 
-        // 检查辅助功能权限
-        checkAccessibilityPermission()
-
         setupConfigManager()
         setupKeyboardMonitor()
     }
