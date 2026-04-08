@@ -10,17 +10,17 @@
   <img src="Resources/screenshot.png" alt="SpaceLauncher Screenshot" width="600">
 </p>
 
-> 🚀 **The fastest way to launch apps on macOS** — Hold Space, press a key, done.
+> 🚀 **The fastest way to launch apps on macOS** — Hold a key, press a key, done.
 
-A lightweight macOS app launcher that uses the **Space key as a modifier**. No more `Cmd+Space` or reaching for the mouse — just hold Space and tap a key to instantly launch any app.
+A lightweight macOS app launcher that turns a **key of your choice into a modifier**. No more `Cmd+Space` or reaching for the mouse — just hold your trigger key and tap a key to instantly launch any app. Supports **Space**, **Caps Lock**, and **ESC** as trigger keys.
 
 ## ✨ Highlights
 
 | Feature | Description |
 |---------|-------------|
-| 🎯 **Space as Modifier** | Hold Space for 150ms to activate — short press still types space |
+| 🎯 **Configurable Trigger Key** | Choose Space, Caps Lock, or ESC as your trigger — hold to activate |
 | ⚡ **Instant Launch** | No UI lag, no search needed — muscle memory takes over |
-| 🔄 **Continuous Switch** | Keep holding Space to switch between multiple apps rapidly |
+| 🔄 **Continuous Switch** | Keep holding trigger key to switch between multiple apps rapidly |
 | 💡 **Visual Hints** | Beautiful floating panel shows all your shortcuts at a glance |
 | ⚙️ **Hot-Reload Config** | Edit YAML config file, changes apply instantly |
 | 🔈 **Audio Feedback** | Subtle sound confirms your launch |
@@ -46,7 +46,7 @@ A lightweight macOS app launcher that uses the **Space key as a modifier**. No m
 │                                         │
 │   Press 'v' ──> VS Code launches! ✨    │
 │   Press 'c' ──> Chrome launches! ✨     │
-│   (Space still held, keep switching!)  │
+│   (Trigger still held, keep switching!) │
 │                                         │
 └─────────────────────────────────────────┘
 ```
@@ -78,19 +78,20 @@ cp -r build/SpaceLauncher.app /Applications/
 ### Quick Start
 
 1. Launch SpaceLauncher
-2. **Grant Accessibility Permission** (prompted automatically)
-3. Hold Space for ~150ms until the hint panel appears
-4. While holding Space, press a key to launch the app
-5. Release Space to dismiss
+2. **Grant Accessibility Permission** (follow the guided prompt)
+3. Hold your trigger key (Space by default) for ~150ms until the hint panel appears
+4. While holding, press a key to launch the app
+5. Release the trigger key to dismiss
 
 ### Pro Tips
 
 | Tip | Description |
 |-----|-------------|
-| 🔄 **Continuous Switch** | Keep holding Space and press multiple keys to switch between apps rapidly |
-| ⏸️ **Pause Function** | Click menu bar icon → "Pause" when you need Space to behave normally (gaming, etc.) |
+| 🔄 **Continuous Switch** | Keep holding trigger key and press multiple keys to switch between apps rapidly |
+| ⏸️ **Pause Function** | Click menu bar icon → "Pause" when you need the trigger key to behave normally (gaming, etc.) |
 | 🔄 **Reload Config** | Right-click menu bar icon → "Reload Config" after editing the config file |
 | 🔐 **Auto-Start** | Enable "Launch at Login" from the menu bar |
+| 🎹 **Change Trigger Key** | Set `trigger_key` in config to `space`, `caps_lock`, or `esc` |
 
 ## ⚙️ Configuration
 
@@ -113,7 +114,8 @@ Created automatically on first run with sensible defaults.
 
 ```yaml
 settings:
-  hold_threshold_ms: 150  # Time to hold Space before activating
+  hold_threshold_ms: 150  # Time to hold trigger key before activating
+  trigger_key: space      # Trigger key: space, caps_lock, or esc
 
 shortcuts:
   # 💬 Communication
@@ -142,19 +144,19 @@ Edit your config file and press `Cmd+R` (or menu → Reload Config) — changes 
 
 ### Why does it need Accessibility permission?
 
-SpaceLauncher monitors global keyboard events to detect the Space key. This requires Accessibility permission. The app only monitors keyboard events when Space is pressed — no keystrokes are logged or stored.
+SpaceLauncher monitors global keyboard events to detect the trigger key. This requires Accessibility permission. The app only monitors keyboard events when the trigger key is pressed — no keystrokes are logged or stored.
 
-### Space isn't working as expected
+### The trigger key isn't working
 
 1. Check if Accessibility permission is granted (menu bar icon shows ⚠️ if not)
 2. Try pausing and resuming from the menu bar
-3. Check if another app is intercepting Space key
+3. Check if another app is intercepting the trigger key
 
 ### How is this different from Spotlight/Alfred?
 
 | Feature | SpaceLauncher | Spotlight/Alfred |
 |---------|---------------|------------------|
-| Trigger | Hold Space (150ms) | Cmd+Space |
+| Trigger | Hold trigger key (150ms) | Cmd+Space |
 | Input | Single key | Type app name |
 | Speed | Instant | Depends on typing |
 | Learning curve | Muscle memory | Search-based |
@@ -164,14 +166,17 @@ SpaceLauncher is designed for **speed** — no typing, no searching, just hold a
 
 ### Can I use a different key instead of Space?
 
-Not currently. Space was chosen because:
-- It's large and easy to hold
-- Rarely used as a modifier in other apps
-- Short press still types space normally
+Yes! Set the `trigger_key` option in your config file. Available options:
+
+| Key | Config Value | Notes |
+|-----|-------------|-------|
+| Space | `space` | Default. Short press still types space |
+| Caps Lock | `caps_lock` | Great for keyboard enthusiasts |
+| ESC | `esc` | Less commonly used, fewer conflicts |
 
 ## 🔮 Roadmap
 
-- [ ] Custom modifier key support
+- [x] Custom trigger key support (Space, Caps Lock, ESC)
 - [ ] App icon in hint panel
 - [ ] Multi-key shortcuts
 - [ ] URL scheme support

@@ -148,10 +148,11 @@ class ConfigManager {
         if !fileManager.fileExists(atPath: configPath.path) {
             let defaultConfig = """
                 # SpaceLauncher Configuration
-                # Press and hold Space, then press a key to launch the app
+                # Press and hold trigger key, then press a key to launch the app
 
                 settings:
                   hold_threshold_ms: 150
+                  trigger_key: space  # 可选: space, caps_lock, esc
 
                 shortcuts:
                   # Communication

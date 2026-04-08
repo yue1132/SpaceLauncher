@@ -28,6 +28,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupMenuBar()
 
         setupConfigManager()
+
+        // 检查权限，如果未授权则显示提示
+        checkAccessibilityPermission()
+
         setupKeyboardMonitor()
     }
 
@@ -107,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let imageName = trusted ? "keyboard" : "exclamationmark.triangle"
             button.image = NSImage(systemSymbolName: imageName, accessibilityDescription: "SpaceLauncher")
             button.image?.isTemplate = true
-            button.toolTip = trusted ? "SpaceLauncher - 按住空格启动应用" : "SpaceLauncher - 需要辅助功能权限"
+            button.toolTip = trusted ? "SpaceLauncher - 按住\(configManager?.config.settings.triggerKey.displayName ?? "空格")启动应用" : "SpaceLauncher - 需要辅助功能权限"
         }
     }
 
@@ -181,8 +185,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func requestPermission() {
-        let options = [kAXTrustedCheckOptionPrompt.takeRetainedValue(): true] as CFDictionary
-        _ = AXIsProcessTrustedWithOptions(options)
+        // 打开系统设置的辅助功能页面，让用户手动添加
+        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") {
+            NSWorkspace.shared.open(url)
+        }
+        // 提示用户如何操作
+        let alert = NSAlert()
+        alert.messageText = "添加 SpaceLauncher 到辅助功能"
+        alert.informativeText = "请在打开的系统设置中：\n1. 点击左下角的 + 按钮\n2. 找到并添加 SpaceLauncher.app\n3. 确保 SpaceLauncher 已勾选"
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "知道了")
+        alert.runModal()
     }
 
     @objc private func openConfig() {
@@ -224,7 +237,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem?.button {
             let imageName = isPaused ? "pause.circle" : "keyboard"
             button.image = NSImage(systemSymbolName: imageName, accessibilityDescription: "SpaceLauncher")
-            button.toolTip = isPaused ? "SpaceLauncher - 已暂停" : "SpaceLauncher - 按住空格启动应用"
+            button.toolTip = isPaused ? "SpaceLauncher - 已暂停" : "SpaceLauncher - 按住\(configManager?.config.settings.triggerKey.displayName ?? "空格")启动应用"
         }
 
         print(isPaused ? "⏸️ SpaceLauncher paused" : "▶️ SpaceLauncher resumed")
